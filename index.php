@@ -839,7 +839,7 @@ if ($dept_cnt > 0) {
 					<?php
 					}
 					?>
-					<!-- #####################  brand logos for company like TCS,Wipro  start  ################################ -->
+					<!-- #####################  brand logos for company like TCS,Wipro Close ################################ -->
 				</div>
 			</div>
 
