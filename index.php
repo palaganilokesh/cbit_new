@@ -149,11 +149,19 @@ if ($dept_cnt > 0) {
 					$deptid = $srowdept_mst['prodmnlnksm_id'];
 					$deptnm = $srowdept_mst['prodscatm_dpttitle']; //sub category department title
 					$deptimgnm = $srowdept_mst['prodcatm_bnrimg'];
-					$deptimg = $rtpth . $u_cat_bnrfldnm . $deptimgnm;
+					$deptimg = $u_cat_bnrfldnm . $deptimgnm;
+				//	$imgpath = $gusrbrnd_upldpth . $imgnm;
+					if (($deptimgnm != "") && file_exists($deptimg)) {
+						$deptimgpth = $rtpth . $deptimg;
+					} else {
+
+						$deptimgpth   = 'n.a';
+					}
+
 				?>
 					<div class="single-courses-card style2">
 						<div class="courses-img">
-							<a href="#"><img src="<?php echo $deptimg; ?>" alt="Image"></a>
+							<a href="#"><img src="<?php echo $deptimgpth; ?>" alt="Image"></a>
 						</div>
 						<div class="courses-content">
 							<a href="#">
