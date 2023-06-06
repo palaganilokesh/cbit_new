@@ -30,15 +30,12 @@ if ($bnr_cnt > 0) {
 				$bnrlnk = $srowbnr_mst['bnrm_lnk'];
 				$bnrimgnm = $srowbnr_mst['bnrm_imgnm'];
 				$bnrtxt = $srowbnr_mst['bnrm_text'];
-				if($bnrtxt=='L')
-				{
-					$i=1;
-				}
-				elseif($bnrtxt=='R'){
-					$i=2;
-				}
-				else{
-					$i=3;
+				if ($bnrtxt == 'L') {
+					$i = 1;
+				} elseif ($bnrtxt == 'R') {
+					$i = 2;
+				} else {
+					$i = 3;
 				}
 				$bnrimgpth = $rtpth . $gusrbnr_fldnm . $bnrimgnm;
 			?>
@@ -47,11 +44,11 @@ if ($bnr_cnt > 0) {
 					<img src="<?php echo $bnrimgpth; ?>" class="w-100 d-md-block d-none" alt="">
 					<img src="<?php echo $bnrimgpth; ?>" class="w-100 d-md-none d-block" alt="">
 
-					<div class="banner-know-more-btn-<?php echo $i;?>">
+					<div class="banner-know-more-btn-<?php echo $i; ?>">
 						<!-- <div class="banner-cap-1">
 				<h3>A new place for better innovation</h3>
 		</div> -->
-						<a href="#" class="custom-btn-12 transt"><?php echo $bnrttl;?> <i class="fa-solid fa-chevron-right"></i></a>
+						<a href="#" class="custom-btn-12 transt"><?php echo $bnrttl; ?> <i class="fa-solid fa-chevron-right"></i></a>
 					</div>
 
 				</div>
@@ -133,45 +130,45 @@ if ($bnr_cnt > 0) {
 <!-- Departments Start  -->
 
 <?php
- $sqry_dept = "SELECT prodmnlnksm_id,prodmnlnksm_name,prodmnlnksm_desc,prodmnlnksm_bnrimg,prodmnlnksm_typ,prodmnlnksm_dsplytyp,prodmnlnksm_prty,prodmnlnksm_sts,prodcatm_id,prodcatm_prodmnlnksm_id,prodcatm_name,prodcatm_desc,prodcatm_bnrimg,prodcatm_icn,prodcatm_dsplytyp,prodcatm_typ,prodcatm_sts,prodcatm_prty,prodscatm_id,prodscatm_name,prodscatm_desc,prodscatm_bnrimg,prodscatm_dpttitle,prodscatm_dpthead,prodscatm_dptname,prodscatm_sts,prodscatm_prodcatm_id,prodscatm_prodmnlnksm_id,prodscatm_prty from  prodmnlnks_mst
+$sqry_dept = "SELECT prodmnlnksm_id,prodmnlnksm_name,prodmnlnksm_desc,prodmnlnksm_bnrimg,prodmnlnksm_typ,prodmnlnksm_dsplytyp,prodmnlnksm_prty,prodmnlnksm_sts,prodcatm_id,prodcatm_prodmnlnksm_id,prodcatm_name,prodcatm_desc,prodcatm_bnrimg,prodcatm_icn,prodcatm_dsplytyp,prodcatm_typ,prodcatm_sts,prodcatm_prty,prodscatm_id,prodscatm_name,prodscatm_desc,prodscatm_bnrimg,prodscatm_dpttitle,prodscatm_dpthead,prodscatm_dptname,prodscatm_sts,prodscatm_prodcatm_id,prodscatm_prodmnlnksm_id,prodscatm_prty from  prodmnlnks_mst
  left join  prodcat_mst on prodcatm_prodmnlnksm_id = prodmnlnksm_id
  left join prodscat_mst on prodscatm_prodcatm_id = prodcatm_id
  where prodmnlnksm_id !='' and prodmnlnksm_sts ='a' and prodmnlnksm_sts = 'a' and prodcatm_sts='a' and prodscatm_sts='a' and prodmnlnksm_name='Departments' group by prodcatm_id ";
 $sqry_dept_mst = mysqli_query($conn, $sqry_dept);
 $dept_cnt = mysqli_num_rows($sqry_dept_mst);
 if ($dept_cnt > 0) {
-	?>
+?>
 	<div class="courses-area section-pad-y">
-	<div class="container">
-		<div class="section-title">
+		<div class="container">
+			<div class="section-title">
 				<h2>Departments</h2>
-		</div>
-		<div class="courses-slider mb-20 owl-carousel owl-theme">
-		<?php
-			while ($srowdept_mst = mysqli_fetch_assoc($sqry_dept_mst)) {
-				$deptid = $srowdept_mst['prodmnlnksm_id'];
-				$deptnm = $srowdept_mst['prodscatm_dpttitle'];//sub category department title
-				$deptimgnm = $srowdept_mst['prodcatm_bnrimg'];
-				$deptimg = $rtpth . $u_cat_bnrfldnm . $deptimgnm;
-				?>
-				<div class="single-courses-card style2">
-				<div class="courses-img">
-					<a href="#"><img src="<?php echo $deptimg;?>" alt="Image"></a>
-				</div>
-				<div class="courses-content">
-					<a href="#">
-						<h3><?php echo $deptnm;?></h3>
-					</a>
-					<a href="#" class="read-more-btn pull-right">Read more<i class="flaticon-next"></i></a>
-				</div>
 			</div>
-			<?php
-			}
-			?>
+			<div class="courses-slider mb-20 owl-carousel owl-theme">
+				<?php
+				while ($srowdept_mst = mysqli_fetch_assoc($sqry_dept_mst)) {
+					$deptid = $srowdept_mst['prodmnlnksm_id'];
+					$deptnm = $srowdept_mst['prodscatm_dpttitle']; //sub category department title
+					$deptimgnm = $srowdept_mst['prodcatm_bnrimg'];
+					$deptimg = $rtpth . $u_cat_bnrfldnm . $deptimgnm;
+				?>
+					<div class="single-courses-card style2">
+						<div class="courses-img">
+							<a href="#"><img src="<?php echo $deptimg; ?>" alt="Image"></a>
+						</div>
+						<div class="courses-content">
+							<a href="#">
+								<h3><?php echo $deptnm; ?></h3>
+							</a>
+							<a href="#" class="read-more-btn pull-right">Read more<i class="flaticon-next"></i></a>
+						</div>
+					</div>
+				<?php
+				}
+				?>
+			</div>
 		</div>
 	</div>
-	</div>
-	<?php
+<?php
 }
 ?>
 
@@ -180,10 +177,10 @@ if ($dept_cnt > 0) {
 
 
 
-		
-		
 
-			<!-- <div class="single-courses-card style2">
+
+
+<!-- <div class="single-courses-card style2">
 				<div class="courses-img">
 					<a href="#"><img src="assets/images/courses/2.jpg" alt="Image"></a>
 				</div>
@@ -231,7 +228,7 @@ if ($dept_cnt > 0) {
 				</div>
 			</div> -->
 
-			<!-- <div class="single-courses-card style2">
+<!-- <div class="single-courses-card style2">
 				<div class="courses-img">
 					<a href="#"><img src="assets/images/courses/2.jpg" alt="Image"></a>
 				</div>
@@ -522,62 +519,62 @@ if ($dept_cnt > 0) {
 
 
 			</div>
-<!-- ######### NOTIFICATION START ######## -->
-			<?php 
-	 $sqrynws_mst = "SELECT  nwsm_id,nwsm_name,nwsm_desc,nwsm_sts, nwsm_dwnfl,nwsm_prty,nwsm_dt,nwsm_img from  nws_mst where  nwsm_sts ='a' and nwsm_typ = 2 order by nwsm_prty desc limit 6	";
+			<!-- ######### NOTIFICATION START ######## -->
+			<?php
+			$sqrynws_mst = "SELECT  nwsm_id,nwsm_name,nwsm_desc,nwsm_sts, nwsm_dwnfl,nwsm_prty,nwsm_dt,nwsm_img from  nws_mst where  nwsm_sts ='a' and nwsm_typ = 2 order by nwsm_prty desc limit 6	";
 			$srsnws_mst = mysqli_query($conn, $sqrynws_mst) or die(mysqli_error($conn));
 			$serchres	= mysqli_num_rows($srsnws_mst);
 			if ($serchres > 0) { ?>
 
-			<div class="col-lg-4">
-				<div class="section-title text-start notific-cus">
-					<h2 class="mt-lg-0 mt-md-0 mt-3">Notifications</h2>
-				</div>
-				<div class="categories">
-					<marquee style="height:430px;" scrollamount="6" direction="up" scroll="continuous" onmouseover="this.stop();" onmouseout="this.start();">
-						<!-- <h3 class="text-white">Notifications</h3> -->
-						<div class="marquee-wrapper">
-							<div class="marque-loop">
-								<ul>
-									<?php
-								while($srownws_mstreslt = mysqli_fetch_assoc($srsnws_mst)){
-								$resltnwsid   = $srownws_mstreslt['nwsm_id'];
-								$resltnewsdate = $srownws_mstreslt['nwsm_dt'];
-							$resltnewsname =  $srownws_mstreslt['nwsm_name'];
-							$resltnewsdsec =  $srownws_mstreslt['nwsm_desc'];
-							?>
-									<li>
-										<a href="<?php echo  $rtpth ?>feed-details.php?nwsid=<?php echo $resltnwsid ?>" class="d-flex align-items-baseline">
-											<span> <i class="fa-regular fa-bell"></i></span>
-											<span><?php echo 	$resltnewsname;?> <img src="assets/images/icon/new.gif" alt=""></span>
-										</a>
-									</li>
-						<?php
-					 } 
-					 ?>
-								</ul>
+				<div class="col-lg-4">
+					<div class="section-title text-start notific-cus">
+						<h2 class="mt-lg-0 mt-md-0 mt-3">Notifications</h2>
+					</div>
+					<div class="categories">
+						<marquee style="height:430px;" scrollamount="6" direction="up" scroll="continuous" onmouseover="this.stop();" onmouseout="this.start();">
+							<!-- <h3 class="text-white">Notifications</h3> -->
+							<div class="marquee-wrapper">
+								<div class="marque-loop">
+									<ul>
+										<?php
+										while ($srownws_mstreslt = mysqli_fetch_assoc($srsnws_mst)) {
+											$resltnwsid   = $srownws_mstreslt['nwsm_id'];
+											$resltnewsdate = $srownws_mstreslt['nwsm_dt'];
+											$resltnewsname =  $srownws_mstreslt['nwsm_name'];
+											$resltnewsdsec =  $srownws_mstreslt['nwsm_desc'];
+										?>
+											<li>
+												<a href="<?php echo  $rtpth ?>feed-details.php?nwsid=<?php echo $resltnwsid ?>" class="d-flex align-items-baseline">
+													<span> <i class="fa-regular fa-bell"></i></span>
+													<span><?php echo 	$resltnewsname; ?> <img src="assets/images/icon/new.gif" alt=""></span>
+												</a>
+											</li>
+										<?php
+										}
+										?>
+									</ul>
+								</div>
 							</div>
-						</div>
-					</marquee>
-				</div>
-				
-				<div class="single-podcasts-card mt-3 mb-0">
-					<div class="row align-items-center justify-content-end">
-						<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-6">
-							<div class="mb-lg-0 mb-md-0 mb-2 text-end">
-								<a href="<?php echo  $rtpth ?>news_all.php?typval=2" class="custom-btn-12 green">View All <i class="fa-solid fa-chevron-right"></i></a>
+						</marquee>
+					</div>
+
+					<div class="single-podcasts-card mt-3 mb-0">
+						<div class="row align-items-center justify-content-end">
+							<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-6">
+								<div class="mb-lg-0 mb-md-0 mb-2 text-end">
+									<a href="<?php echo  $rtpth ?>news_all.php?typval=2" class="custom-btn-12 green">View All <i class="fa-solid fa-chevron-right"></i></a>
+								</div>
+
 							</div>
 
 						</div>
-
 					</div>
 				</div>
-			</div>
 
-				<?php
-					 } 
-					 ?>
-<!-- ######### NOTIFICATION END ######## -->
+			<?php
+			}
+			?>
+			<!-- ######### NOTIFICATION END ######## -->
 		</div>
 	</div>
 </div>
@@ -804,47 +801,45 @@ if ($dept_cnt > 0) {
 
 						</div>
 					</div>
-
-					<?php 
+					<!-- #####################  brand logos for company like TCS,Wipro  start  ################################ -->
+					<?php
 					$sqrybrnd_mst1 = "SELECT brndm_id,brndm_name,brndm_img,brndm_sts, brndm_prty from brnd_mst where brndm_sts='a' and brndm_img!='' order by brndm_prty  desc";
-			$srsbrnd_mst = mysqli_query($conn, $sqrybrnd_mst1) or die(mysqli_error());
-			$serchresbrnd	= mysqli_num_rows($srsbrnd_mst);
-			if ($serchresbrnd > 0)
-			 { 
-				?>
-					<div class="hire-company mt-xxl-5 mt-lx-4 mt-lg-3 mt-md-2 mt-2">
-						<div class="events-area">
-							<div class="container">
-								<div class="hireCompany-slider mb-20 owl-carousel owl-theme">
-									<?php
-								while ($srowbrnd_mst = mysqli_fetch_assoc($srsbrnd_mst)) 
-								{
-							$brnd_id =	$srowbrnd_mst['brndm_id'];
-							$brnd_name =	$srowbrnd_mst['brndm_name'];
-							$imgnm =	$srowbrnd_mst['brndm_img'];
-							$imgpath = $gusrbrnd_upldpth . $imgnm;
-							if (($imgnm != "") && file_exists($imgpath)) {
-								$brndimgpth = $rtpth . $imgpath;
-							} else {
+					$srsbrnd_mst = mysqli_query($conn, $sqrybrnd_mst1) or die(mysqli_error());
+					$serchresbrnd	= mysqli_num_rows($srsbrnd_mst);
+					if ($serchresbrnd > 0) {
+					?>
+						<div class="hire-company mt-xxl-5 mt-lx-4 mt-lg-3 mt-md-2 mt-2">
+							<div class="events-area">
+								<div class="container">
+									<div class="hireCompany-slider mb-20 owl-carousel owl-theme">
+										<?php
+										while ($srowbrnd_mst = mysqli_fetch_assoc($srsbrnd_mst)) {
+											$brnd_id =	$srowbrnd_mst['brndm_id'];
+											$brnd_name =	$srowbrnd_mst['brndm_name'];
+											$imgnm =	$srowbrnd_mst['brndm_img'];
+											$imgpath = $gusrbrnd_upldpth . $imgnm;
+											if (($imgnm != "") && file_exists($imgpath)) {
+												$brndimgpth = $rtpth . $imgpath;
+											} else {
 
-								$brndimgpth   = 'n.a';
-							
-							}
+												$brndimgpth   = 'n.a';
+											}
 
-						?>
-									<div class="single-events-card style2">
-										<div class="events-image"><img src="<?php echo $brndimgpth ;?>" class="w-100" alt="Image"></div>
+										?>
+											<div class="single-events-card style2">
+												<div class="events-image"><img src="<?php echo $brndimgpth; ?>" class="w-100" alt="Image"></div>
+											</div>
+										<?php
+										}
+										?>
 									</div>
-									<?php 
-							 }
-			 ?>		
 								</div>
 							</div>
 						</div>
-					</div>
-				<?php 
-			 }
-			 ?>
+					<?php
+					}
+					?>
+					<!-- #####################  brand logos for company like TCS,Wipro  start  ################################ -->
 				</div>
 			</div>
 
@@ -882,94 +877,83 @@ if ($dept_cnt > 0) {
         </div>
     </section> -->
 
+<!-- ###############  Facilities start ################# -->
+
+<?php
+$sqry_facility = "SELECT prodmnlnksm_id,prodmnlnksm_name,prodmnlnksm_desc,prodmnlnksm_bnrimg,prodmnlnksm_typ,prodmnlnksm_dsplytyp,prodmnlnksm_prty,prodmnlnksm_sts,prodcatm_id,prodcatm_prodmnlnksm_id,prodcatm_name,prodcatm_desc,prodcatm_bnrimg,prodcatm_icn,prodcatm_dsplytyp,prodcatm_typ,prodcatm_sts,prodcatm_prty  from  prodmnlnks_mst
+  left join  prodcat_mst on prodcatm_prodmnlnksm_id = prodmnlnksm_id
+	where prodmnlnksm_id !='' and prodmnlnksm_sts ='a' and prodmnlnksm_sts = 'a' and prodcatm_sts='a' and prodmnlnksm_name='Facilities' group by prodcatm_id ";
+
+//  prodscatm_id,prodscatm_name,prodscatm_desc,prodscatm_bnrimg,prodscatm_dpttitle,prodscatm_dpthead,prodscatm_dptname,prodscatm_sts,prodscatm_prodcatm_id,prodscatm_prodmnlnksm_id,prodscatm_prty 
+//  left join prodscat_mst on prodscatm_prodcatm_id = prodcatm_id
+
+$sqry_fcty_mst = mysqli_query($conn, $sqry_facility);
+$fcty_cnt = mysqli_num_rows($sqry_fcty_mst);
+if ($fcty_cnt > 0) {
+?>
 
 
+	<div class="health-care-area section-pad-y facilities-holder">
+		<div class="container">
+			<div class="facilities-wrapper">
+				<div class="section-title">
+					<h2>Facilities</h2>
+				</div>
+				<div class="facilities-slider mb-20 owl-carousel owl-theme">
+					<?php
+					while ($srowfcty_mst = mysqli_fetch_assoc($sqry_fcty_mst)) {
+						$fctytid = $srowfcty_mst['prodmnlnksm_id'];
+						$fctyimgnm = $srowfcty_mst['prodcatm_bnrimg'];
+						$fctynm = $srowfcty_mst['prodcatm_name'];
+						$fctyimg =  $u_cat_bnrfldnm . $fctyimgnm;
+						if (($fctyimgnm != "") && file_exists($fctyimg)) {
+							$fctyimgpth = $rtpth . $fctyimg;
+						} else {
 
+							$fctyimgpth   = 'n.a';
+						}
 
+					?>
+						<div class="item">
+							<div class="single-health-care-card style1">
+								<div class="img">
+									<a href="#"><img src="<?php echo $fctyimgpth; ?>" alt="Image"></a>
+								</div>
+								<div class="health-care-content">
+									<a href="#">
+										<h3><?php echo $fctynm; ?></h3>
+									</a>
+								</div>
+							</div>
+						</div>
+					<?php
+					}
+					?>
+				</div>
 
-<div class="health-care-area section-pad-y facilities-holder">
-	<div class="container">
-		<div class="facilities-wrapper">
-			<div class="section-title">
-				<h2>Facilities</h2>
+				<div class="single-podcasts-card mt-3 mb-0">
+					<div class="row align-items-center justify-content-end">
+						<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-6">
+							<div class="mb-lg-0 mb-md-0 mb-2 text-end">
+								<a href="#" class="custom-btn-12 green">View All <i class="fa-solid fa-chevron-right"></i></a>
+							</div>
+
+						</div>
+
+					</div>
+				</div>
+
 			</div>
 
-			<div class="facilities-slider mb-20 owl-carousel owl-theme">
-
-				<div class="item">
-					<div class="single-health-care-card style1">
-						<div class="img">
-							<a href="#"><img src="assets/images/facilities/1.jpg" alt="Image"></a>
-						</div>
-						<div class="health-care-content">
-							<a href="#">
-								<h3>Library</h3>
-							</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="item">
-					<div class="single-health-care-card style1">
-						<div class="img">
-							<a href="#"><img src="assets/images/facilities/2.jpg" alt="Image"></a>
-						</div>
-						<div class="health-care-content">
-							<a href="#">
-								<h3>Indoor Games</h3>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="single-health-care-card style1">
-						<div class="img">
-							<a href="#"><img src="assets/images/facilities/3.jpg" alt="Image"></a>
-						</div>
-						<div class="health-care-content">
-							<a href="#">
-								<h3>Digital Room</h3>
-							</a>
-						</div>
-					</div>
-				</div>
-				<div class="item">
-					<div class="single-health-care-card style1">
-						<div class="img">
-							<a href="#"><img src="assets/images/facilities/4.jpg" alt="Image"></a>
-						</div>
-						<div class="health-care-content">
-							<a href="#">
-								<h3>Gym</h3>
-							</a>
-						</div>
-					</div>
-				</div>
 
 
-
-			</div>
-
-			<div class="single-podcasts-card mt-3 mb-0">
-				<div class="row align-items-center justify-content-end">
-					<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-6">
-						<div class="mb-lg-0 mb-md-0 mb-2 text-end">
-							<a href="#" class="custom-btn-12 green">View All <i class="fa-solid fa-chevron-right"></i></a>
-						</div>
-
-					</div>
-
-				</div>
-			</div>
 
 		</div>
-
-
-
-
 	</div>
-</div>
-
+<?php
+}
+?>
+<!-- ###################  Facility close    ###################### -->
 
 <!-- <section>
         <div class="additional-information qk-links-home">
