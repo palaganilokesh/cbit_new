@@ -925,10 +925,10 @@ if ($fcty_cnt > 0) {
 						<div class="item">
 							<div class="single-health-care-card style1">
 								<div class="img">
-									<a href="#"><img src="<?php echo $fctyimgpth; ?>" alt="Image"></a>
+									<a href="<?php echo  $rtpth ?>facilities.php"><img src="<?php echo $fctyimgpth; ?>" alt="Image"></a>
 								</div>
 								<div class="health-care-content">
-									<a href="#">
+									<a href="<?php echo  $rtpth ?>facilities.php">
 										<h3><?php echo $fctynm; ?></h3>
 									</a>
 								</div>
@@ -943,7 +943,7 @@ if ($fcty_cnt > 0) {
 					<div class="row align-items-center justify-content-end">
 						<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-6">
 							<div class="mb-lg-0 mb-md-0 mb-2 text-end">
-								<a href="#" class="custom-btn-12 green">View All <i class="fa-solid fa-chevron-right"></i></a>
+								<a href="<?php echo  $rtpth ?>facilities.php" class="custom-btn-12 green">View All <i class="fa-solid fa-chevron-right"></i></a>
 							</div>
 
 						</div>
