@@ -232,11 +232,6 @@ include_once 'script.php';
 																																																																			} ?>"> -->
 
 
-
-
-
-
-
 												<div id="div1" <?php if ((isset($_REQUEST['optn']) &&
 																					(trim($_REQUEST['optn']) == 't')) || (!isset($_REQUEST['optn']))) { ?> style="display:block" <?php  } else { ?>style="display:none" <?php } ?>>
 													<input type="text" class="form-control" name="txtname" id="txtname" value="<?php
@@ -314,11 +309,11 @@ include_once 'script.php';
 									</td>
 								</tr>
 								<tr>
-									<td width="10%" class="td_bg"><strong>SL.No.</strong></td>
+									<td width="11%" class="td_bg"><strong>SL.No.</strong></td>
 									<td width="15%" class="td_bg"><strong>Placement Year</strong></td>
-									<td width="10%" class="td_bg"><strong>Companies</strong></td>
-									<td width="10%" class="td_bg"><strong>Placement Offers</strong></td>
-									<td width="10%" class="td_bg"><strong>Highest Package </strong></td>
+									<td width="15%" class="td_bg"><strong>Companies</strong></td>
+									<td width="15%" class="td_bg"><strong>Placement Offers</strong></td>
+									<td width="15%" class="td_bg"><strong>Highest Package </strong></td>
 									<td width="10%" class="td_bg"><strong>Of Placement</strong></td>
 									<td width="6%" align="center" class="td_bg"><strong>Rank</strong></td>
 									<td width="7%" align="center" class="td_bg"><strong>Edit</strong></td>

@@ -203,41 +203,32 @@ include_once 'includes/inc_folder_path.php';
 									<div class="desktop-nav">
 										<div class="container-fluid">
 											<nav class="navbar navbar-expand-md navbar-light">
-												<div class="collapse navbar-collapse mean-menu " id="navbarSupportedContent">
-													<ul class="navbar-nav">
-
-														<li class="nav-item">
-															<a href="#" class="nav-link">Alumni</a>
-														</li>
-														<li class="nav-item">
-															<a href="#" class="nav-link">Library</a>
-														</li>
-														<li class="nav-item">
-															<a href="#" class="nav-link">IQAC</a>
-														</li>
-														<li class="nav-item">
-															<a href="#" class="nav-link">ACIC</a>
-														</li>
-
-
-
-														<!-- <li class="nav-item">
-                                                            <a href="#" class="nav-link">CAMU</a>
-                                                        </li>
-                                                        <li class="nav-item">
-                                                            <a href="#" class="nav-link">HR App</a>
-                                                        </li>
-                                                        
-                                                        
-                                                        <li class="nav-item">
-                                                            <a href="#" class="nav-link">Student dashboard</a>
-                                                        </li> -->
-
-
-													</ul>
-
-
-												</div>
+<!-- #########  Start Top Menu display based on mainlink table display type =news  ########### -->
+<?php 
+$sqlmenu="SELECT prodmnlnksm_id,prodmnlnksm_name,prodmnlnksm_dsplytyp,prodmnlnksm_typ,prodmnlnksm_sts,prodmnlnksm_prty from  prodmnlnks_mst  where prodmnlnksm_typ='n' and prodmnlnksm_sts='a' and prodmnlnksm_id !='' ";
+$result=mysqli_query($conn,$sqlmenu);
+$cnt=mysqli_num_rows($result);
+if($cnt > 0)
+{
+	?>
+	<div class="collapse navbar-collapse mean-menu " id="navbarSupportedContent">
+		<ul class="navbar-nav">
+			<?php
+			while($row=mysqli_fetch_assoc($result)){
+				$name=$row['prodmnlnksm_name'];
+				?>
+			<li class="nav-item">
+		<a href="<?php echo $rtpth;?>" class="nav-link"><?php echo $name;?></a>
+		</li>
+		<?php
+}
+?>
+		</ul>
+	</div>
+	<?php
+}
+?>
+<!-- #########  close Top Menu display based on mainlink table display type =news  ########### -->
 											</nav>
 										</div>
 									</div>

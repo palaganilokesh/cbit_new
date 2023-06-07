@@ -12,7 +12,7 @@ $db_seokywrd = "";
 $db_seodesc = "";
 $current_page = "home";
 $body_class = "homepage";
-include('header2.php');
+include('header.php');
 ?>
 <!-- banners dynamic start -->
 <?php
