@@ -756,14 +756,37 @@ if ($dept_cnt > 0) {
 	</div>
 </div>
 
-
+<?php
+ $sqryplcmt_mst = "SELECT plcmtm_id,plcmtm_name,plcmtm_img,plcmtm_sts, plcmtm_prty,plcmtm_compny,plcmtm_ofer,plcmtm_pkg, plcmtm_percnt from plcmt_mst where plcmtm_sts='a'  order by plcmtm_prty  desc limit 1 ";
+	$srsplcmt_mst = mysqli_query($conn, $sqryplcmt_mst) or die(mysqli_error($conn));
+	$serchresplcmt	= mysqli_num_rows($srsplcmt_mst);
+	if ($serchresplcmt > 0) {
+	?>
 <div class="campus-information-area placements-section section-pad-y">
 	<div class="container">
 		<div class="row align-items-center justify-content-center">
 			<div class="col-12">
 				<div class="campus-content mb-0">
+				<?php
+										while ($srowplcmt_mst = mysqli_fetch_assoc($srsplcmt_mst)) {
+											$plcmt_id =	$srowplcmt_mst['plcmtm_id'];
+											$plcmt_name =	$srowplcmt_mst['plcmtm_name'];
+											$plcmt_compny =	$srowplcmt_mst['plcmtm_compny'];
+											$plcmt_ofer =	$srowplcmt_mst['plcmtm_ofer'];
+											$plcmt_pkg =	$srowplcmt_mst['plcmtm_pkg'];
+											$plcmt_perc =	$srowplcmt_mst['plcmtm_percnt'];
+											// $imgnm =	$srowplcmt_mst['plcmtm_img'];
+											// $imgpath = $gusrbrnd_upldpth . $imgnm;
+											// if (($imgnm != "") && file_exists($imgpath)) {
+											// 	$brndimgpth = $rtpth . $imgpath;
+											// } else {
+
+											// 	$brndimgpth   = 'n.a';
+											// }
+
+										?>
 					<div class="section-title">
-						<h2 class="text-white">2021-22 Placement Highlights</h2>
+						<h2 class="text-white"><?php echo $plcmt_name;?> Placement Highlights</h2>
 					</div>
 
 					<div class="counter">
@@ -772,7 +795,7 @@ if ($dept_cnt > 0) {
 								<div class="counter-card text-white">
 									<img src="assets/images/icons/companies.png" class="place-icon" alt="">
 									<h1>
-										<span class="odometer" data-count="140">00</span><span class="target">+</span>
+										<span class="odometer" data-count="<?php echo $plcmt_compny;?>">00</span><span class="target">+</span>
 									</h1>
 									<p class="text-white text-center">Companies</p>
 								</div>
@@ -781,7 +804,7 @@ if ($dept_cnt > 0) {
 								<div class="counter-card text-white">
 									<img src="assets/images/icons/placements-offer.png" class="place-icon" alt="">
 									<h1>
-										<span class="odometer" data-count="1736">00</span>
+										<span class="odometer" data-count="<?php echo $plcmt_ofer;?>">00</span>
 									</h1>
 									<p class="text-white text-center">Placement Offers</p>
 								</div>
@@ -790,7 +813,7 @@ if ($dept_cnt > 0) {
 								<div class="counter-card text-white">
 									<img src="assets/images/icons/highest-package.png" class="place-icon" alt="">
 									<h1>
-										<span class="odometer" data-count="54">00</span><span class="target">L</span>
+										<span class="odometer" data-count="<?php echo $plcmt_pkg;?>">00</span><span class="target">L</span>
 									</h1>
 									<p class="text-white text-center">Highest package</p>
 								</div>
@@ -799,7 +822,7 @@ if ($dept_cnt > 0) {
 								<div class="counter-card text-white">
 									<img src="assets/images/icons/of-placements.png" class="place-icon" alt="">
 									<h1>
-										<span class="odometer" data-count="83.68">00</span><span class="target">%</span>
+										<span class="odometer" data-count="<?php echo $plcmt_perc;?>">00</span><span class="target">%</span>
 									</h1>
 									<p class="text-white text-center">Of Placements</p>
 								</div>
@@ -809,10 +832,13 @@ if ($dept_cnt > 0) {
 
 						</div>
 					</div>
+					<?php
+								}
+						?>
 					<!-- #####################  brand logos for company like TCS,Wipro  start  ################################ -->
 					<?php
 					$sqrybrnd_mst1 = "SELECT brndm_id,brndm_name,brndm_img,brndm_sts, brndm_prty from brnd_mst where brndm_sts='a' and brndm_img!='' order by brndm_prty  desc";
-					$srsbrnd_mst = mysqli_query($conn, $sqrybrnd_mst1) or die(mysqli_error());
+					$srsbrnd_mst = mysqli_query($conn, $sqrybrnd_mst1) or die(mysqli_error($conn));
 					$serchresbrnd	= mysqli_num_rows($srsbrnd_mst);
 					if ($serchresbrnd > 0) {
 					?>
@@ -848,6 +874,7 @@ if ($dept_cnt > 0) {
 					}
 					?>
 					<!-- #####################  brand logos for company like TCS,Wipro Close ################################ -->
+			
 				</div>
 			</div>
 
@@ -855,7 +882,7 @@ if ($dept_cnt > 0) {
 		</div>
 	</div>
 </div>
-
+<?php } ?>
 
 
 

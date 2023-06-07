@@ -93,14 +93,7 @@ with font-awesome or any other icon font library -->
                                         <p>Subcategory</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a href="view_all_recruiters.php" class="nav-link <?php if ($pagenm == "Recruiters/Recognitions") {
-                                                                                            echo "active";
-                                                                                        } ?>">
-                                        <i class="far fa-dot-circle nav-icon"></i>
-                                        <p>Recruiters/Recognitions</p>
-                                    </a>
-                                </li>
+                              
                                 <li class="nav-item">
                                     <a href="view_all_news.php" class="nav-link <?php if ($pagenm == "Updates / Notifications") {
                                                                                     echo "active";
@@ -117,14 +110,14 @@ with font-awesome or any other icon font library -->
                                         <p>Student Testimonial</p>
                                     </a>
                                 </li>
-                                <li class="nav-item">
+                                <!-- <li class="nav-item">
                                     <a href="vw_all_adm.php" class="nav-link <?php if ($pagenm == "Admission") {
                                                                                     echo "active";
                                                                                 } ?>">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Admission</p>
                                     </a>
-                                </li>
+                                </li> -->
                                 <li class="nav-item">
                                     <a href="product.php" class="nav-link <?php if ($pagenm == "Downloads Category") {
                                                                                 echo "active";
@@ -161,6 +154,36 @@ with font-awesome or any other icon font library -->
                             </ul>
                         </li>
                         <!-- End setup cat -->
+												<!-- Start Placement menu -->
+												<li class="nav-item has-treeview <?php if ($pagemncat == "Placements") {
+                                                                echo "menu-open";
+                                                            } ?>">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-circle"></i>
+                                <p>Placements<i class="right fas fa-angle-left"></i></p>
+                            </a>
+                            <ul class="nav nav-treeview <?php if ($pagemncat == "Placements") {
+                                                            echo "menu-open";
+                                                        } ?>">
+                                <li class="nav-item">
+                                    <a href="view_all_placement_highlights.php" class="nav-link <?php if ($pagenm == "Placement Higilights") {
+                                                                                        echo "active";
+                                                                                    } ?>">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Placement Higilights</p>
+                                    </a>
+                                </li>
+																<li class="nav-item">
+                                    <a href="view_all_recruiters.php" class="nav-link <?php if ($pagenm == "Recruiters/Recognitions") {
+                                                                                            echo "active";
+                                                                                        } ?>">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Recruiters/Recognitions</p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+											   <!-- End Placement menu -->	
                         <!-- Start Gallery menu -->
                         <li class="nav-item has-treeview <?php if ($pagemncat == "Gallery") {
                                                                 echo "menu-open";

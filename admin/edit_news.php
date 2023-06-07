@@ -239,9 +239,9 @@ include_once $inc_adm_lftlnk;
                             </div>
                             <div class="col-sm-9">
                                 <select name="lsttyp" id="lsttyp" class="form-control">
-                                    <option value="1" <?php if ($rowsbrnd_mst['brndm_typ'] == '1') echo 'selected'; ?>>Recruiters</option>
-                                    <option value="2" <?php if ($rowsbrnd_mst['brndm_typ'] == '2') echo 'selected'; ?>>Recognitions</option>
-                                    <option value="3" <?php if ($rowsbrnd_mst['brndm_typ'] == '3') echo 'selected'; ?>>Both</option>
+                                    <option value="1" <?php if ($rowsbrnd_mst['nwsm_typ'] == '1') echo 'selected'; ?>>Results Updates</option>
+                                    <option value="2" <?php if ($rowsbrnd_mst['nwsm_typ'] == '2') echo 'selected'; ?>>College Notifications</option>
+                                    <option value="3" <?php if ($rowsbrnd_mst['nwsm_typ'] == '3') echo 'selected'; ?>>University Notifications</option>
                                 </select>
                             </div>
                         </div>

@@ -576,3 +576,19 @@ if (isset($_REQUEST['mdlname']) && (trim($_REQUEST['mdlname']) != "")) {
 		echo "<font color=red><strong>Duplicate Name</strong></font>";
 	}
 }
+// ----------------------- to check duplicate placement year name -----------------
+if (isset($_REQUEST['plcmtname']) && (trim($_REQUEST['plcmtname']) != "")) {
+	$name = glb_func_chkvl($_REQUEST['plcmtname']);
+	$sqryplcmt_mst = "SELECT plcmtm_name from plcmt_mst where plcmtm_name='$name'";
+	if (isset($_REQUEST['plcmtm_id']) && ($_REQUEST['plcmtm_id'] != "")) {
+		$id = glb_func_chkvl($_REQUEST['plcmtm_id']);
+		$sqryplcmt_mst .= " and plcmtm_id != $id";
+	}
+	// echo $sqryprodmncat_mst; exit;
+	$srsplcmt_mst = mysqli_query($conn, $sqryplcmt_mst);
+	$cnt = mysqli_num_rows($srsplcmt_mst);
+	if ($cnt > 0) {
+		echo "<font color=red><strong>Duplicate Name</strong></font>";
+	}
+}
+// -----------------------END to check duplicate placement name -----------------
