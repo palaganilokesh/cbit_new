@@ -10,15 +10,14 @@
 	//Programm 	  : events.php
 	//Package 	  : APVC
 	//Purpose 	  : For Viewing New events 
-	//Created By  : Nischit N Desai
-	//Created On  :	04/06/2013
-	//Modified By : 
+	//Created By  : 
+	//Created On  :
 	//Modified On : 
 	//Company 	  : Adroit
 	/************************************************************/
 	global $msg,$loc,$rowsprpg,$dispmsg,$disppg;
 	$loc = "";
- $clspn_val = "8";
+ $clspn_val = "6";
 $rd_adpgnm = "add_event.php";
 $rd_edtpgnm = "edit_event.php";
 $rd_crntpgnm = "view_all_events.php";
@@ -51,7 +50,7 @@ $pagenm = "Events";
 			$img        =  array();
 			$imgpth     =  array();
 			for($i=0;$i<$count;$i++){	
-			     $sqryevnt_mst="select 
+			     $sqryevnt_mst="SELECT 
 			                       evntm_img
 							    from 
 					               evnt_mst
@@ -221,97 +220,129 @@ $pagenm = "Events";
 <script language="javascript" type="text/javascript" src="../includes/chkbxvalidate.js"></script>
 <link href="docstyle.css" rel="stylesheet" type="text/css">
 </head>
-<body onLoad="onload()">
-<?php 
-	include_once '../includes/inc_adm_header.php';
-	include_once '../includes/inc_adm_leftlinks.php';?>
-<table width="977"  border="0" align="center" cellpadding="0" cellspacing="0">
-  <tr>
-    <td>&nbsp;</td>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <td valign="top"><table width="100%"  border="0" cellspacing="0" cellpadding="0" class="admcnt_bdr">
-      <tr>
-        
-        <td width="930" height="325" rowspan="2" valign="top"  bgcolor="#FFFFFF" class="contentpadding" style="background-position:top; background-repeat:repeat-x; "><span class="maintitles">
-            Events/Programs
-</span><br>
-            <FORM METHOD="POST" ACTION="" name="frmevnt" id="frmevnt">
+<body>
+    <?php include_once $inc_adm_hdr; ?>
+    <section class="content">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0 text-dark">View All
+                           Events</h1>
+                    </div><!-- /.col -->
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active">View All
+                               Events</li>
+                        </ol>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
+        <!-- Default box -->
+        <div class="card">
+		<?php if (isset($_REQUEST['sts']) && (trim($_REQUEST['sts']) == "y")) { ?>
+                <div class="alert alert-danger alert-dismissible fade show" role="alert" id="delids" style="display:none">
+                    <strong>Deleted Successfully !</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            <?php
+            }
+            ?>
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" id="updid" style="display:none">
+                <strong>Updated Successfully !</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="alert alert-info alert-dismissible fade show" role="alert" id="sucid" style="display:none">
+                <strong>Added Successfully !</strong>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="card-body p-0">
+
+			<form method="post" action="<?php $_SERVER['SCRIPT_FILENAME']; ?>" name="frmevnt" id="frmevnt">
+         
 			<input type="hidden" name="hidchkval" id="hidchkval">
 			<input type="hidden" name="hidchksts" id="hidchksts">
-			<table width="100%"  border="0" cellspacing="0" cellpadding="5">
-              <tr>
-			  	<td width="91%">
-					<table width="100%">
-						<tr>
-							<td width="20%"><strong>Search By</strong></td>
-							<td width="13%" align="center">
-								<select name="lstsrchby" id="lstsrchby" >
-								  <option value="">-- Select --</option>                       
-								 <option value="n" <?php if(isset($_POST['lstsrchby']) && $_POST['lstsrchby'] == 'n'){echo 'selected';} else if($_REQUEST['optn'] && $_REQUEST['optn'] =='n'){echo 'selected';}?>>Name</option>
-								 <?php /*?><option value="c" <?php if(isset($_POST['lstsrchby']) && $_POST['lstsrchby'] == 'c'){echo 'selected';} else if($_REQUEST['optn'] && $_REQUEST['optn'] =='c'){echo 'selected';}?>>City</option>
-								<option value="stdt" <?php if(isset($_POST['lstsrchby']) && $_POST['lstsrchby'] == 'stdt'){echo 'selected';} else if($_REQUEST['optn'] && $_REQUEST['optn'] =='stdt'){echo 'selected';}?>>Start Date</option>
-<?php */?>								</select>
-							</td>
-						  <td width="37%">
-						  <div id="div1" style="display:block">
-						  <input type="text" name="txtsrchval" value="<?php 
-						  if(isset($_POST['txtsrchval']) && ($_POST['txtsrchval']!="")){
-						  	echo $_POST['txtsrchval'];
-						  }
-						  elseif(isset($_REQUEST['val']) && ($_REQUEST['val']!="")){
-						     echo $_REQUEST['val'];
-						  }
-						?>">
-						  Exact
-						  <input type="checkbox" name="chkexact" value="1"<?php 						  
-						  	if(isset($_POST['chkexact']) && ($_POST['chkexact']==1)){
-								echo 'checked';
-							}
-							elseif(isset($_REQUEST['chk']) && ($_REQUEST['chk']=='y')){
-								echo 'checked';							
-							}						  						  
-						  ?>>
-</div>					</td>
-						  <td width="30%"><input name="button" type="button" class="textfeild" onClick="srch()" value="Search" $>
-					      <a href="events.php" class="orongelinks"><strong>Refresh</strong></a></td>
-						</tr>
-					</table> 
-				</td>
-                <td width="9%" align="right">
-				<input name="btn" type="button" class="textfeild" value="&laquo; Add" onClick="addnew()">
-				</td>
-              </tr>
-            </table>
-              <table width="100%"  border="0" cellpadding="3" cellspacing="1" bgcolor="#D8D7D7">
-			  <tr>
-                <td bgcolor="#FFFFFF" colspan="6" align="center"></td>				
-                <td width="7%" align="right" valign="bottom" bgcolor="#FFFFFF">
-					<div align="right">
-					<input name="btnsts" id="btnsts" type="button"  value="Status" onClick="updatests('hidchksts','frmevnt','chksts')">
-					</div>
-				</td>
-                <td width="7%" align="right" valign="bottom" bgcolor="#FFFFFF" >
-					<div align="right">
-					<input name="btndel" id="btndel" type="button"  value="Delete" onClick="deleteall('hidchkval','frmevnt','chkdlt');" >
-					</div>
-				</td>
-              </tr>
-              <tr>
-                <td width="10%" bgcolor="#bed8f9" class="tableheadings" align="left"><strong>Sl.No.</strong></td>
-                <td width="31%" bgcolor="#bed8f9" class="tableheadings" align="left"><strong>Name</strong></td>
-				<td width="14%" bgcolor="#bed8f9" class="tableheadings" align="left"><strong>City</strong></td>
-				<td width="14%" bgcolor="#bed8f9" class="tableheadings" align="left"><strong>Date</strong></td> 
-                <td width="7%" bgcolor="#bed8f9" class="tableheadings" align="center"><strong>Priority</strong></td>
-				<td width="10%" bgcolor="#bed8f9" class="tableheadings" align="center"><strong>Edit</strong></td>
-                <td width="7%" bgcolor="#bed8f9" class="tableheadings" class="tableheadings" align="center"><strong>
-				  <input type="checkbox" name="Check_ctr"  id="Check_ctr" value="yes"onClick="Check(document.frmevnt.chksts,'Check_ctr')"></strong></td>
-				<td width="7%" bgcolor="#bed8f9" class="tableheadings" class="tableheadings" align="center"><strong>
-				<input type="checkbox" name="Check_dctr"  id="Check_dctr" value="yes" onClick="Check(document.frmevnt.chkdlt,'Check_dctr')"><b></b> 
-				</strong>
-				</td>
-              </tr>
+			<input type="hidden" name="hdnallval" id="hdnallval">
+                    <div class="col-md-12">
+                        <div class="row justify-content-left align-items-center mt-3">
+                            <div class="col-sm-5">
+                                <div class="form-group">
+                                    <div class="col-8">
+                                        <div class="row">
+                                            <div class="col-10">
+                                                <input type="text" name="txtsrchval" placeholder="Search by name" id="txtsrchval" class="form-control" value="<?php if (isset($_REQUEST['txtsrchval']) && $_REQUEST['txtsrchval'] != "") {
+                                                                                                                                                                    echo $_REQUEST['txtsrchval'];
+                                                                                                                                                                } ?>">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+									
+														<div class="col-sm-4">
+                                <div class="form-group">Exact
+                                    <!-- <input type="checkbox" name="chkexact" value="y" <?php if (isset($_POST['chkexact']) && ($_POST['chkexact'] == 1)) {
+                                                                                                echo 'checked';
+                                                                                            } elseif (isset($_REQUEST['chk']) && ($_REQUEST['chk'] == 'y')) {
+                                                                                                echo 'checked';
+                                                                                            } ?>> -->
+                                    <input type="checkbox" name="chkexact" value="y" <?php
+                                                                                        if (isset($_REQUEST['chkexact']) && (glb_func_chkvl($_REQUEST['chkexact']) == 'y')) {
+                                                                                            echo 'checked';
+                                                                                        }
+                                                                                        ?> id="chkexact">
+                                    &nbsp;&nbsp;&nbsp;
+                                    <input type="submit" value="Search" class="btn btn-primary" name="btnsbmt" onClick="srch();">
+                                    <a href="<?php echo $rd_crntpgnm; ?>" class="btn btn-primary">Refresh</a>
+                                    <button type="submit" class="btn btn-primary" onClick="addnew();">+ Add</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body p-0">
+                        <div class="table-responsive">
+                            <table width="100%" border="0" cellpadding="3" cellspacing="1" class="table table-striped projects">
+                                <tr>
+                                    <td colspan="<?php echo $clspn_val; ?>" align="center">
+                                        <!-- <?PHP if ($msg != "") {
+                                                    echo $msg;
+                                                }
+                                                ?> -->
+                                    </td>
+                                    <td width="7%" align="right" valign="bottom">
+                                        <div align="right">
+
+                                            <input name="btnsts" id="btnsts" type="button" class="btn btn-xs btn-primary" value="Status" onClick="updatests('hdnchksts','frmnews','chksts')">
+                                        </div>
+                                    </td>
+                                    <td width="7%" align="right" valign="bottom">
+                                        <div align="right">
+                                            <input name="btndel" id="btndel" type="button" class="btn btn-xs btn-primary" value="Delete" onClick="deleteall('hdnchkval','frmnews','chkdlt');">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+             
+                <td width="10%"  class="td_bg" align="left"><strong>Sl.No.</strong></td>
+                <td width="31%"  class="td_bg" align="left"><strong>Name</strong></td>
+				<td width="14%"  class="td_bg" align="left"><strong>City</strong></td>
+				<td width="14%" class="td_bg" align="left"><strong>Date</strong></td> 
+                <td width="7%" class="td_bg" align="center"><strong>Priority</strong></td>
+				<td width="10%"  class="td_bg" align="center"><strong>Edit</strong></td>
+                <td width="7%"  class="td_bg" align="center"><strong>
+				  <input type="checkbox" name="Check_ctr"  id="Check_ctr" value="yes"onClick="Check(document.frmevnt.chksts,'Check_ctr','hdnallval')"></strong></td>
+				<td width="7%" class="td_bg" align="center"><strong>
+				<input type="checkbox" name="Check_dctr"  id="Check_dctr" value="yes" onClick="Check(document.frmevnt.chkdlt,'Check_dctr')">
+         </tr>
 			  <?php
 				$sqryevnt_mst1="select 
 									evntm_id,evntm_name,evntm_fle,evntm_sts,

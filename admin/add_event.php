@@ -31,7 +31,7 @@ isset($_POST['txtstdate']) && ($_POST['txtstdate'] != "") &&
 isset($_POST['txtprior']) && ($_POST['txtprior'] != ""))
 {
 	include_once '../includes/inc_fnct_fleupld.php'; // For uploading files	   
-include_once "../database/iqry_evnt_mst.php";
+include_once "../database/iqry_event_mst.php";
 }
 $val  =  glb_func_chkvl($_REQUEST['val']); 
 $rd_crntpgnm = "view_all_events.php";
@@ -86,61 +86,67 @@ include_once('../includes/inc_fnct_ajax_validation.php');
 			}
 		}
 			/********************Multiple Image Upload********************************/
-		var nfiles=1;
-	 function expand () {
-			nfiles ++;
-            var htmlTxt = '<?php
-					echo "<table border=\'0\' cellpadding=\'1\' cellspacing=\'1\' width=\'100%\'>"; 
-					echo "<tr>";
-					echo "<td align=\'center\' width=\'10%\'> ' + nfiles + '</td>";					
-					echo "<td align=\'left\' width=\'35%\'>";
-					echo "<input type=text name=txtphtname' + nfiles + ' id=txtphtname' + nfiles + ' class=select size=\'25\'>";
-					echo "</td>"; 
-					
-					echo "<td align=\'left\' width=\'35%\'>";
-					echo "<input type=file name=flesimg' + nfiles + ' id=flesimg' + nfiles + ' class=select><br>";
-					echo "</td>";
-					
-					/*echo "<td align=center width=35%>";
-					echo "<input type=file name=flebimg' + nfiles + ' id=flebimg' + nfiles + ' class=select><br>";
-					echo "</td>";*/
-					
-				
-					echo "<td align=\'left\' width=\'10%\'>";
-					echo "<input type=\'text\' name=txtphtprior' + nfiles + ' id=txtphtprior' + nfiles + ' class=select size=5 maxlength=3>";
-					echo "</td>"; 
-					
-					echo "<td align=center width=\'10%\'>";
-					echo "<select name=lstphtsts' + nfiles + ' id=lstphtsts' + nfiles + ' class=select>";
-					echo "<option value=a>Active</option>";
-					echo "<option value=i>Inactive</option>";
-					echo "</select>";
-					echo "</td></tr></table>";			
-				?>';
-			
-  var Cntnt = document.getElementById ("myDiv");         
-		 	 							 
-		 if (document.createRange) {//all browsers, except IE before version 9 
-		 		
-			 var rangeObj = document.createRange ();
-		 	 	Cntnt.insertAdjacentHTML('BeforeBegin' , htmlTxt);					
-				document.frmaddevnt.hdntotcntrl.value = nfiles;	
-               if (rangeObj.createContextualFragment) { // all browsers, except IE	
-			   		 	//var documentFragment = rangeObj.createContextualFragment (htmlTxt);
-                 	 	//Cntnt.insertBefore (documentFragment, Cntnt.firstChild);	//Mozilla	
-					 				
-				}
-                else{//Internet Explorer from version 9
-                 Cntnt.insertAdjacentHTML('BeforeBegin' , htmlTxt);
-				}
-			}			
-			else{//Internet Explorer before version 9
-                Cntnt.insertAdjacentHTML ("BeforeBegin", htmlTxt);
-			}
-			document.getElementById('hdntotcntrl').value = nfiles;						
-			//document.frmaddevnt.hdntotcntrl.value = nfiles;
-        }			
-</script>
+			var nfiles=1;
+		  function expand()
+		  {
+		  	nfiles++;
+		  	var htmlTxt = '<?php
+		  	echo "<table border=0 cellpadding=3 cellspacing=1 width=100%>";
+		  	echo "<tr >";
+		  	echo "<td colspan=3 height=2 bgcolor=#f0f0f0 valign=middle></td>";
+		  	echo "</tr>";
+		  	echo "<tr>";
+		  	echo "<td colspan=3 height=4 valign=middle></td>";
+		  	echo "</tr>";
+		  	echo "</table><br>";
+		  	echo "<table border=0 cellpadding=0 cellspacing=1 width=100%>";
+		  	echo "<tr>";
+		  	echo "<td align=center width=5%> ' + nfiles + '</td>";
+		  	echo "<td align=center width=15%>";
+		  	echo "<input type=text name=txtphtname' + nfiles + ' id=txtphtname' + nfiles + ' class=form-control size=15 placeholder=Name>";
+		  	echo "</td>";
+		  	echo "<td align=center width=30%>";
+		  	echo "<input type=file name=flesimg' + nfiles + ' id=flesimg' + nfiles + ' class=form-control><br>";
+		  	echo "</td>";
+		  
+		  	echo "<td align=center width=10%>";
+		  	echo "<input type=text name=txtphtprior' + nfiles + ' id=txtphtprior' + nfiles + ' class=form-control size=5 maxlength=3 placeholder=Priority>";
+		  	echo "</td>";
+		  	echo "<td align=center width=10%>";
+		  	echo "<select name=lstphtsts' + nfiles + ' id=lstphtsts' + nfiles + ' class=form-control>";
+		  	echo "<option value=a>Active</option>";
+		  	echo "<option value=i>Inactive</option>";
+		  	echo "</select>";
+		  	echo "</td></tr></table><br>";
+		  	?>';
+		  	var Cntnt = document.getElementById ("myDiv");
+		  	if (document.createRange)
+		  	{
+		  		//all browsers, except IE before version 9
+		  		var rangeObj = document.createRange();
+		  		Cntnt.insertAdjacentHTML('BeforeBegin' , htmlTxt);
+		  		document.frmprod.hdntotcntrl.value = nfiles;
+		  		if (rangeObj.createContextualFragment)
+		  		{
+		  			// all browsers, except IE
+		  			//var documentFragment = rangeObj.createContextualFragment (htmlTxt);
+		  			//Cntnt.insertBefore (documentFragment, Cntnt.firstChild);	//Mozilla
+		  		}
+		  		else
+		  		{
+		  			//Internet Explorer from version 9
+		  			Cntnt.insertAdjacentHTML('BeforeBegin' , htmlTxt);
+		  		}
+		  	}
+		  	else
+		  	{
+		  		//Internet Explorer before version 9
+		  		Cntnt.insertAdjacentHTML ("BeforeBegin", htmlTxt);
+		  	}
+		  	document.getElementById('hdntotcntrl').value = nfiles;
+		  	document.frmprod.hdntotcntrl.value = nfiles;
+		  }
+		</script>
 <?php include_once $inc_adm_hdr; ?>
 <section class="content">
 	<div class="content-header">
@@ -280,7 +286,7 @@ include_once('../includes/inc_fnct_ajax_validation.php');
 									<label>Start Date and Time</label>
 								</div>
 								<div class="col-sm-9">
-									<input type="datetime-local" name="txtstdate" id="txtstdate" class="form-control" size="4" maxlength="3">
+									<input type="datetime-local" name="txtstdate" id="txtstdate" class="form-control" >
 									<span id="errorsDiv_txtstdate"></span>
 								
 								</div>
@@ -292,7 +298,7 @@ include_once('../includes/inc_fnct_ajax_validation.php');
 									<label>End Date and Time</label>
 								</div>
 								<div class="col-sm-9">
-									<input type="datetime-local" name="txteddt" id="txteddt" class="form-control" size="4" maxlength="3">
+									<input type="datetime-local" name="txteddt" id="txteddt" class="form-control" >
 									<span id="errorsDiv_txteddt"></span>
 								</div>
 							</div>
@@ -303,8 +309,19 @@ include_once('../includes/inc_fnct_ajax_validation.php');
 									<label>No. of seats</label>
 								</div>
 								<div class="col-sm-9">
-									<input type="text" name="txtnvets" id="txtnvets" class="form-control" size="4" maxlength="3">
+									<input type="text" name="txtnvets" id="txtnvets" class="form-control">
 									<span id="errorsDiv_txtnvets"></span>
+								</div>
+							</div>
+						</div>
+						<div class="col-md-12">
+							<div class="row mb-2 mt-2">
+								<div class="col-sm-3">
+									<label>File</label>
+								</div>
+								<div class="col-sm-9">
+									<input type="file" name="evntfle" id="evntfle" class="form-control">
+									<span id="errorsDiv_evntfle"></span>
 								</div>
 							</div>
 						</div>
@@ -314,7 +331,7 @@ include_once('../includes/inc_fnct_ajax_validation.php');
 									<label>Rank *</label>
 								</div>
 								<div class="col-sm-9">
-									<input type="text" name="txtprior" id="txtprior" class="form-control" size="4" maxlength="3">
+									<input type="text" name="txtprior" id="txtprior" class="form-control">
 									<span id="errorsDiv_txtprior"></span>
 								</div>
 							</div>
@@ -333,10 +350,58 @@ include_once('../includes/inc_fnct_ajax_validation.php');
 								</div>
 							</div>
 						</div>
+						<div class="table-responsive">
+									<table width="100%"  border="0" cellspacing="1" cellpadding="1" class="table table-striped table-bordered">
+										<tr bgcolor="#FFFFFF">
+											<td width="1%"  align="center" ><strong>S.No.</strong></td>
+											<td width="10%" align="center" ><strong>Name</strong></td>
+											<td width="35%"  align="center" ><strong> Image</strong></td>
+												<td width="10%"  align="center" ><strong>Priority</strong></td>
+											<td width="10%"  align="center" ><strong>Status</strong></td>
+										</tr>
+									</table>
+								</div>
+								<div class="table-responsive">
+									<table width="100%"  border="0" cellspacing="1" cellpadding="1" class="table table-striped table-bordered" >
+										<table width="100%" border="0" cellspacing="3" cellpadding="3">
+											<tr bgcolor="#FFFFFF">
+												<td width="5%" align="center">1</td>
+												<td width="15%"  align="center">
+													<input type="text" name="txtphtname1" id="txtphtname1" placeholder="Name" class="form-control" size="15"><br>
+													<span id="errorsDiv_txtphtname1" style="color:#FF0000"></span>
+												</td>
+												<td width="30%"  align="center" >
+													<input type="file" name="flesimg1" class="form-control" id="flesimg1"><br/>
+													<span id="errorsDiv_flesimg1" style="color:#FF0000"></span>
+												</td>
+												<td width="10%"  align="center">
+													<input type="text" name="txtphtprior1" id="txtphtprior1" class="form-control" placeholder="Priority" size="5" maxlength="3"><br>
+													<span id="errorsDiv_txtphtprior1" style="color:#FF0000"></span>
+												</td>
+												<td width="10%" align="center" >					
+													<select name="lstphtsts1" id="lstphtsts1" class="form-control">
+														<option value="a" selected>Active</option>
+														<option value="i">Inactive</option>
+													</select>
+												</td>
+											</tr>
+										</table>
+									</table>
+									<input type="hidden" name="hdntotcntrl" value="1">
+									<div id="myDiv">
+										<table width="100%" cellspacing='2' cellpadding='3'>
+											<tr>
+												<td align="center">
+													<input name="btnadd" type="button" onClick="expand()" value="Add Another Image" class="btn btn-primary mb-3">
+												</td>
+											</tr>
+										</table>
+									</div>
+								</div>
 						<p class="text-center">
-							<input type="Submit" class="btn btn-primary" name="btnplcmtbmt" id="btnplcmtbmt" value="Submit">
+							<input type="Submit" class="btn btn-primary" name="btnaddevnt" id="btnaddevnt" value="Submit">
 							&nbsp;&nbsp;&nbsp;
-							<input type="reset" class="btn btn-primary" name="btnbnrreset" value="Clear" id="btnbnrreset">
+							<input type="reset" class="btn btn-primary" name="btnaddevntreset" value="Clear" id="btnaddevntreset">
 							&nbsp;&nbsp;&nbsp;
 							<input type="button" name="btnBack" value="Back" class="btn btn-primary" onClick="location.href='<?php echo $rd_crntpgnm; ?>'">
 						</p>
