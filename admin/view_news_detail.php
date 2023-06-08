@@ -195,6 +195,9 @@ if (isset($_REQUEST['sts']) && (trim($_REQUEST['sts']) == "y")) {
                                     echo "College Notifications";
                                 } else if ($rowsprodscat_mst['nwsm_typ'] == 3) {
                                     echo "University Notifications";
+                                }
+                                else if ($rowsprodscat_mst['nwsm_typ'] == 4) {
+                                    echo "Announcements";
                                 } ?>
                             </div>
                         </div>

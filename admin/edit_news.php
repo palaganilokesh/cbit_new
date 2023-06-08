@@ -242,11 +242,12 @@ include_once $inc_adm_lftlnk;
                                     <option value="1" <?php if ($rowsbrnd_mst['nwsm_typ'] == '1') echo 'selected'; ?>>Results Updates</option>
                                     <option value="2" <?php if ($rowsbrnd_mst['nwsm_typ'] == '2') echo 'selected'; ?>>College Notifications</option>
                                     <option value="3" <?php if ($rowsbrnd_mst['nwsm_typ'] == '3') echo 'selected'; ?>>University Notifications</option>
+                                    <option value="4" <?php if ($rowsbrnd_mst['nwsm_typ'] == '4') echo 'selected'; ?>>Announcements</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-
+                   
                     <!-- <div class="col-md-12">
                         <div class="row mb-2 mt-2">
                             <div class="col-sm-3">

@@ -49,8 +49,7 @@ error_reporting(0);
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-                        <!-- Add icons to the links using the .nav-icon class
-with font-awesome or any other icon font library -->
+                        <!-- Add icons to the links using the .nav-icon class with font-awesome or any other icon font library -->
                         <li class="nav-item has-treeview menu-open">
                             <a href="./main.php" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -100,6 +99,14 @@ with font-awesome or any other icon font library -->
                                                                                 } ?>">
                                         <i class="far fa-dot-circle nav-icon"></i>
                                         <p>Updates / Notifications</p>
+                                    </a>
+                                </li>
+																<li class="nav-item">
+                                    <a href="view_all_events.php" class="nav-link <?php if ($pagenm == "Events") {
+                                                                                    echo "active";
+                                                                                } ?>">
+                                        <i class="far fa-dot-circle nav-icon"></i>
+                                        <p>Events</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">

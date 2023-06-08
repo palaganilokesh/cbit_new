@@ -70,13 +70,9 @@ include_once 'includes/inc_folder_path.php';
 	<link rel="stylesheet" href="assets/css/responsive.css">
 
 	<link rel="stylesheet" href="https://cdn.rawgit.com/sachinchoolur/lightgallery.js/master/dist/css/lightgallery.css">
-
-
-
 </head>
 
 <body>
-
 	<div class="preloader-area">
 		<!-- <img src="assets/images/icon/load-2.gif" alt=""> -->
 		<div class="d-flex justify-content-center align-items-center h-100">
@@ -99,41 +95,52 @@ include_once 'includes/inc_folder_path.php';
             </div>
         </div> -->
 	</div>
-
-
+	<?php
+	$sqryanounce_mst =  "SELECT nwsm_id,nwsm_name,nwsm_sts,nwsm_prty,nwsm_typ,nwsm_dwnfl,date_format(nwsm_dt,'%d-%m-%Y') as nwsm_dt,nwsm_desc,nwsm_lnk	from nws_mst where nwsm_id != ''and nwsm_sts='a' and nwsm_typ=4";;
+	$srsanounce_mst = mysqli_query($conn, $sqryanounce_mst);
+	$cnt_anounce = mysqli_num_rows($srsanounce_mst);
+	?>
 	<div class="navbar-area">
-
-
-
 		<div class="top-header-area">
-
-			<div class="an-label">
-				<div class="an-label-holder">
-					<p class="d-flex align-items-center"><span class="d-lg-block d-md-block d-none">Announcements</span>
-						<span class="ms-2"><i class="fas fa-bullhorn"></i></span>
-					</p>
+		
+				<?php 
+				if($cnt_anounce > 0)
+				{
+					?>
+						<div class="an-label">
+							<div class="an-label-holder">
+								<p class="d-flex align-items-center"><span class="d-lg-block d-md-block d-none">Announcements</span>
+								<span class="ms-2"><i class="fas fa-bullhorn"></i></span>
+							</p>
+					</div>
 				</div>
-			</div>
-
+			<?php	
+		}
+		?>
+				
+		
 			<div class="container-fluid">
 				<div class="row align-items-center justify-content-lg-between justify-content-md-between justify-content-end">
-
 					<div class="col-lg-11 col-md-11 col-12 mb-lg-0 mb-md-0 mb-2">
-						<div class="head-mar-holder">
+					<div class="head-mar-holder">
 							<marquee class="marquee" onmouseover="this.stop();" onmouseout="this.start();">
 								<div class="header-left-content header-right-content">
 									<div class="list top-not-links">
 										<ul>
-											<li><a href="#"><img src="assets/images/icon/new.gif" alt=""> International
-													Conference on Robotics and Cyber Physical Machines on April 28th &
-													29th 2023
-													in a Online Mode. Join Now!</a></li>
-											<li><a href="#">Voters Registration Drive for Students on 27th & 28th April
-													2023.
-												</a></li>
-											<li><a href="#">AICTE Cicular Regarding Promotion of Indian languages in
-													Technical
-													Education as per National Education Policy 2020</a></li>
+						<?php 
+						while($anounce=mysqli_fetch_assoc($srsanounce_mst)){
+							$ancmt_id=$anounce['nwsm_id'];
+							$ancmt_nm=$anounce['nwsm_name'];
+							$ancmt_desc=$anounce['nwsm_desc'];
+							$ancmt_link=$anounce['nwsm_lnk'];
+							$ancmt_dt=$anounce['nwsm_dt'];
+							?>
+							<li>
+								<a href="<?php echo $rtpth .$ancmt_link;?>"><img src="assets/images/icon/new.gif" alt=""> <?php echo $ancmt_desc ;?></a></li>
+						<?php	}
+
+						?>
+										
 										</ul>
 									</div>
 								</div>
@@ -203,32 +210,31 @@ include_once 'includes/inc_folder_path.php';
 									<div class="desktop-nav">
 										<div class="container-fluid">
 											<nav class="navbar navbar-expand-md navbar-light">
-<!-- #########  Start Top Menu display based on mainlink table display type =news  ########### -->
-<?php 
-$sqlmenu="SELECT prodmnlnksm_id,prodmnlnksm_name,prodmnlnksm_dsplytyp,prodmnlnksm_typ,prodmnlnksm_sts,prodmnlnksm_prty from  prodmnlnks_mst  where prodmnlnksm_typ='n' and prodmnlnksm_sts='a' and prodmnlnksm_id !='' ";
-$result=mysqli_query($conn,$sqlmenu);
-$cnt=mysqli_num_rows($result);
-if($cnt > 0)
-{
-	?>
-	<div class="collapse navbar-collapse mean-menu " id="navbarSupportedContent">
-		<ul class="navbar-nav">
-			<?php
-			while($row=mysqli_fetch_assoc($result)){
-				$name=$row['prodmnlnksm_name'];
-				?>
-			<li class="nav-item">
-		<a href="<?php echo $rtpth;?>" class="nav-link"><?php echo $name;?></a>
-		</li>
-		<?php
-}
-?>
-		</ul>
-	</div>
-	<?php
-}
-?>
-<!-- #########  close Top Menu display based on mainlink table display type =news  ########### -->
+												<!-- #########  Start Top Menu display based on mainlink table display type =news  ########### -->
+												<?php
+												$sqlmenu = "SELECT prodmnlnksm_id,prodmnlnksm_name,prodmnlnksm_dsplytyp,prodmnlnksm_typ,prodmnlnksm_sts,prodmnlnksm_prty from  prodmnlnks_mst  where prodmnlnksm_typ='n' and prodmnlnksm_sts='a' and prodmnlnksm_id !='' ";
+												$result = mysqli_query($conn, $sqlmenu);
+												$cnt = mysqli_num_rows($result);
+												if ($cnt > 0) {
+												?>
+													<div class="collapse navbar-collapse mean-menu " id="navbarSupportedContent">
+														<ul class="navbar-nav">
+															<?php
+															while ($row = mysqli_fetch_assoc($result)) {
+																$name = $row['prodmnlnksm_name'];
+															?>
+																<li class="nav-item">
+																	<a href="<?php echo $rtpth; ?>" class="nav-link"><?php echo $name; ?></a>
+																</li>
+															<?php
+															}
+															?>
+														</ul>
+													</div>
+												<?php
+												}
+												?>
+												<!-- #########  close Top Menu display based on mainlink table display type =news  ########### -->
 											</nav>
 										</div>
 									</div>
@@ -389,7 +395,7 @@ if($cnt > 0)
 											<a class="menu-link" href="<?php echo $rtpth . $catname; ?>">
 												<div><?php echo $catname; ?> <i class="fa fa-chevron-down nav-with-icon"></i></div>
 											</a>
-	
+
 											<?php
 											$sqryprodscat_mst = "SELECT prodcatm_id,prodcatm_name,prodcatm_sts, prodcatm_typ,prodcatm_prodmnlnksm_id from prodcat_mst where prodcatm_prodmnlnksm_id ='$mnlnks' and prodcatm_sts ='a' group by prodcatm_id order by prodcatm_prty desc";
 											$srsprodscat_mst = mysqli_query($conn, $sqryprodscat_mst);
@@ -462,15 +468,14 @@ if($cnt > 0)
 																				<?php
 																				// }
 																				// } 
-																			 }
+																			}
 																				?>
 																				<?php
 																				if ($disptype == 1) {
 																				?>
 																			</ul>
 																		<?php
-																				}
-																				 elseif ($disptype == 2) {
+																				} elseif ($disptype == 2) {
 																		?>
 																	</ul>
 											</li>
@@ -482,7 +487,7 @@ if($cnt > 0)
 
 	<?php
 																				}
-	}
+																			}
 	?>
 
 	<!-- menu close <li> -->
@@ -499,7 +504,7 @@ if($cnt > 0)
 </ul>
 </nav>
 <?php
-	}
+						}
 
 ?>
 	</div>

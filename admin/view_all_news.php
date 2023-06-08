@@ -1,4 +1,5 @@
 <?php
+error_reporting(0);
 include_once '../includes/inc_config.php'; //Making paging validation 
 include_once $inc_nocache; //Clearing the cache information
 include_once $adm_session; //checking for session
@@ -197,7 +198,7 @@ include_once 'script.php';
                             <div class="col-sm-3">
                                 <div class="form-group">
                                     <?php
-                                    $sqryprodcat_mst =  "select
+                                    $sqryprodcat_mst =  "SELECT
                                     nwsm_id,nwsm_name,nwsm_sts,nwsm_prty,nwsm_typ,
                                     nwsm_dwnfl,date_format(nwsm_dt,'%d-%m-%Y') as nwsm_dt						    
                                     from
@@ -221,6 +222,9 @@ include_once 'script.php';
                                         <option value="3" <?php if (isset($_REQUEST['lsttyp']) && $_REQUEST['lsttyp'] == "3") {
                                                                 echo 'selected';
                                                             } ?>>University Notifications</option>
+                                        <option value="4" <?php if (isset($_REQUEST['lsttyp']) && $_REQUEST['lsttyp'] == "4") {
+                                                                echo 'selected';
+                                                            } ?>>Announcements</option>
                                     </select>
                                 </div>
                             </div>
@@ -310,6 +314,9 @@ include_once 'script.php';
                                                                                 $db_nwtypnm = 'College Notifications';
                                                                             } elseif ($nwstyp == '3') {
                                                                                 $db_nwtypnm = 'University Notifications';
+                                                                            }
+                                                                            elseif ($nwstyp == '4') {
+                                                                                $db_nwtypnm = 'Announcements';
                                                                             } else {
                                                                                 $db_nwtypnm = "";
                                                                             }

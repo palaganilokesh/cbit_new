@@ -202,6 +202,7 @@ include_once('../includes/inc_fnct_ajax_validation.php');
                                         <option value="1" selected>Results Updates</option>
                                         <option value="2">College Notifications</option>
                                         <option value="3">University Notifications</option>
+                                        <option value="4">Announcements</option>
                                     </select>
                                 </div>
                             </div>
